@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>You're Invited to Trio 🎵</title>
+
+  <meta
+    name="description"
+    content="You're invited to experience Trio Music — where music becomes a feeling you can share."
+  />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #05050a;
+      --pink: #ff3d81;
+      --purple: #7c4dff;
+      --blue: #3d8bff;
+      --white: #ffffff;
+      --muted: #aaaab7;
+      --border: rgba(255, 255, 255, 0.13);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+      color: var(--white);
+
+      background:
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(255, 61, 129, 0.18),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 85% 25%,
+          rgba(124, 77, 255, 0.20),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(61, 139, 255, 0.13),
+          transparent 35%
+        ),
+        var(--bg);
+    }
+
+
+    /* =====================================================
+       ANIMATED BACKGROUND
+    ===================================================== */
+
+    .background {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.35;
+      animation: floatOrb 10s ease-in-out infinite alternate;
+    }
+
+    .orb.one {
+      width: 280px;
+      height: 280px;
+      background: var(--pink);
+      top: -100px;
+      left: -100px;
+    }
+
+    .orb.two {
+      width: 320px;
+      height: 320px;
+      background: var(--purple);
+      right: -130px;
+      top: 15%;
+      animation-delay: -3s;
+    }
+
+    .orb.three {
+      width: 240px;
+      height: 240px;
+      background: var(--blue);
+      bottom: -100px;
+      left: 35%;
+      animation-delay: -6s;
+    }
+
+    @keyframes floatOrb {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(40px, -30px) scale(1.12);
+      }
+
+      100% {
+        transform: translate(-30px, 35px) scale(0.92);
+      }
+    }
+
+
+    /* =====================================================
+       FLOATING MUSIC NOTES
+    ===================================================== */
+
+    .music-notes {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .note {
+      position: absolute;
+      bottom: -60px;
+
+      color: rgba(255, 255, 255, 0.22);
+
+      font-size: 25px;
+
+      animation:
+        noteFloat linear infinite;
+
+      text-shadow:
+        0 0 20px rgba(255, 61, 129, 0.6);
+    }
+
+    .note:nth-child(1) {
+      left: 8%;
+      animation-duration: 10s;
+      animation-delay: 0s;
+    }
+
+    .note:nth-child(2) {
+      left: 20%;
+      animation-duration: 13s;
+      animation-delay: 3s;
+      font-size: 18px;
+    }
+
+    .note:nth-child(3) {
+      left: 35%;
+      animation-duration: 11s;
+      animation-delay: 1s;
+      font-size: 30px;
+    }
+
+    .note:nth-child(4) {
+      left: 52%;
+      animation-duration: 15s;
+      animation-delay: 5s;
+      font-size: 20px;
+    }
+
+    .note:nth-child(5) {
+      left: 68%;
+      animation-duration: 12s;
+      animation-delay: 2s;
+      font-size: 28px;
+    }
+
+    .note:nth-child(6) {
+      left: 82%;
+      animation-duration: 14s;
+      animation-delay: 6s;
+      font-size: 18px;
+    }
+
+    .note:nth-child(7) {
+      left: 92%;
+      animation-duration: 11s;
+      animation-delay: 4s;
+      font-size: 32px;
+    }
+
+    @keyframes noteFloat {
+      0% {
+        transform:
+          translateY(0)
+          rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.6;
+      }
+
+      50% {
+        transform:
+          translateY(-50vh)
+          translateX(30px)
+          rotate(20deg);
+      }
+
+      100% {
+        transform:
+          translateY(-115vh)
+          translateX(-40px)
+          rotate(-20deg);
+        opacity: 0;
+      }
+    }
+
+
+    /* =====================================================
+       PARTICLES
+    ===================================================== */
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+
+      width: 4px;
+      height: 4px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      opacity: 0.25;
+
+      animation:
+        particlePulse 4s ease-in-out infinite;
+    }
+
+    .particle:nth-child(1) {
+      top: 20%;
+      left: 12%;
+      animation-delay: 0s;
+    }
+
+    .particle:nth-child(2) {
+      top: 35%;
+      left: 75%;
+      animation-delay: 1s;
+    }
+
+    .particle:nth-child(3) {
+      top: 70%;
+      left: 15%;
+      animation-delay: 2s;
+    }
+
+    .particle:nth-child(4) {
+      top: 80%;
+      left: 80%;
+      animation-delay: 3s;
+    }
+
+    .particle:nth-child(5) {
+      top: 12%;
+      left: 55%;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes particlePulse {
+      0%,
+      100% {
+        transform: scale(0.6);
+        opacity: 0.15;
+      }
+
+      50% {
+        transform: scale(2);
+        opacity: 0.7;
+        box-shadow: 0 0 15px white;
+      }
+    }
+
+
+    /* =====================================================
+       PAGE
+    ===================================================== */
+
+    .page {
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 35px 18px;
+
+      position: relative;
+
+      z-index: 5;
+    }
+
+
+    /* =====================================================
+       CARD
+    ===================================================== */
+
+    .card {
+      width: min(720px, 100%);
+
+      padding: 45px 32px;
+
+      text-align: center;
+
+      border-radius: 32px;
+
+      border: 1px solid var(--border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.09),
+          rgba(255, 255, 255, 0.035)
+        );
+
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+
+      box-shadow:
+        0 30px 100px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+      position: relative;
+
+      overflow: hidden;
+
+      animation:
+        cardEnter 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform:
+          translateY(60px)
+          scale(0.92);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+
+    /* Shimmer across card */
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -100%;
+
+      width: 60%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.05),
+          transparent
+        );
+
+      transform: skewX(-20deg);
+
+      animation:
+        shimmer 6s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        left: -100%;
+      }
+
+      35%,
+      100% {
+        left: 150%;
+      }
+    }
+
+
+    /* =====================================================
+       LOGO
+    ===================================================== */
+
+    .logo-wrapper {
+      position: relative;
+
+      width: 90px;
+      height: 90px;
+
+      margin: 0 auto 22px;
+    }
+
+    .logo {
+      width: 76px;
+      height: 76px;
+
+      position: absolute;
+
+      left: 7px;
+      top: 7px;
+
+      border-radius: 24px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      font-size: 38px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--pink),
+          var(--purple)
+        );
+
+      box-shadow:
+        0 0 0 0 rgba(255, 61, 129, 0.5),
+        0 15px 45px rgba(255, 61, 129, 0.35);
+
+      animation:
+        logoPulse 2.5s ease-in-out infinite;
+    }
+
+    .logo-ring {
+      position: absolute;
+
+      inset: 0;
+
+      border-radius: 28px;
+
+      border: 1px solid rgba(255, 255, 255, 0.25);
+
+      animation:
+        ringPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes logoPulse {
+      0%,
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      50% {
+        transform: scale(1.07) rotate(2deg);
+      }
+    }
+
+    @keyframes ringPulse {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 0;
+      }
+    }
+
+
+    /* =====================================================
+       TEXT
+    ===================================================== */
+
+    .eyebrow {
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 4px;
+
+      color: #ff9abb;
+
+      text-transform: uppercase;
+
+      margin-bottom: 13px;
+
+      animation:
+        fadeUp 1s 0.25s both;
+    }
+
+    h1 {
+      font-size:
+        clamp(42px, 8vw, 70px);
+
+      line-height: 0.98;
+
+      letter-spacing: -3px;
+
+      margin-bottom: 20px;
+
+      animation:
+        fadeUp 1s 0.35s both;
+    }
+
+    .gradient {
+      background:
+        linear-gradient(
+          90deg,
+          #ff4d8d,
+          #c16cff,
+          #6e8cff,
+          #ff4d8d
+        );
+
+      background-size: 250% auto;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+
+      animation:
+        gradientMove 4s linear infinite;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: 250% center;
+      }
+    }
+
+    .welcome {
+      min-height: 28px;
+
+      margin-bottom: 25px;
+
+      font-size: 18px;
+
+      font-weight: 600;
+
+      color: #eeeeF4;
+
+      animation:
+        fadeUp 1s 0.45s both;
+    }
+
+    .intro {
+      max-width: 590px;
+
+      margin: auto;
+
+      color: var(--muted);
+
+      font-size: 17px;
+
+      line-height: 1.8;
+
+      animation:
+        fadeUp 1s 0.55s both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /* =====================================================
+       QUOTE
+    ===================================================== */
+
+    .quote {
+      position: relative;
+
+      margin: 32px auto;
+
+      max-width: 590px;
+
+      padding: 25px 20px;
+
+      border-radius: 22px;
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(255, 255, 255, 0.045);
+
+      animation:
+        fadeUp 1s 0.65s both;
+    }
+
+    .quote::before {
+      content: "“";
+
+      position: absolute;
+
+      top: -20px;
+      left: 18px;
+
+      font-size: 65px;
+
+      color: rgba(255, 61, 129, 0.35);
+
+      font-family: Georgia, serif;
+    }
+
+    .quote strong {
+      display: block;
+
+      font-size: 21px;
+
+      line-height: 1.5;
+
+      margin-bottom: 9px;
+    }
+
+    .quote span {
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+
+    /* =====================================================
+       FEATURES
+    ===================================================== */
+
+    .features {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 12px;
+
+      margin: 28px 0;
+
+      animation:
+        fadeUp 1s 0.75s both;
+    }
+
+    .feature {
+      padding: 20px 12px;
+
+      border-radius: 19px;
+
+      border: 1px solid var(--border);
+
+      background:
+        rgba(255, 255, 255, 0.045);
+
+      transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+    }
+
+    .feature:hover {
+      transform:
+        translateY(-7px);
+
+      background:
+        rgba(255, 255, 255, 0.09);
+
+      border-color:
+        rgba(255, 255, 255, 0.25);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+
+      display: inline-block;
+
+      margin-bottom: 9px;
+
+      animation:
+        iconBounce 2s ease-in-out infinite;
+    }
+
+    .feature:nth-child(2)
+    .feature-icon {
+      animation-delay: 0.3s;
+    }
+
+    .feature:nth-child(3)
+    .feature-icon {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes iconBounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px) scale(1.08);
+      }
+    }
+
+    .feature p {
+      color: #c8c8d2;
+
+      font-size: 13px;
+
+      line-height: 1.5;
+    }
+
+
+    /* =====================================================
+       DOWNLOAD BUTTON
+    ===================================================== */
+
+    .cta-wrapper {
+      position: relative;
+
+      display: inline-block;
+
+      width: min(100%, 380px);
+
+      animation:
+        fadeUp 1s 0.85s both;
+    }
+
+    .cta-glow {
+      position: absolute;
+
+      inset: -4px;
+
+      border-radius: 19px;
+
+      background:
+        linear-gradient(
+          90deg,
+          var(--pink),
+          var(--purple),
+          var(--blue),
+          var(--pink)
+        );
+
+      background-size: 300% 100%;
+
+      filter: blur(14px);
+
+      opacity: 0.35;
+
+      animation:
+        buttonGlow 4s linear infinite;
+    }
+
+    @keyframes buttonGlow {
+      0% {
+        background-position: 0% center;
+      }
+
+      100% {
+        background-position: 300% center;
+      }
+    }
+
+    .cta {
+      position: relative;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 11px;
+
+      width: 100%;
+
+      min-height: 62px;
+
+      padding: 0 25px;
+
+      border-radius: 17px;
+
+      text-decoration: none;
+
+      color: white;
+
+      font-size: 16px;
+
+      font-weight: 800;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff3d81,
+          #7c4dff
+        );
+
+      border: 1px solid rgba(255,255,255,0.18);
+
+      box-shadow:
+        0 15px 40px rgba(124, 77, 255, 0.3);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .cta::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -120%;
+
+      width: 80%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,0.35),
+          transparent
+        );
+
+      transform: skewX(-20deg);
+
+      animation:
+        buttonShine 3.5s ease-in-out infinite;
+    }
+
+    @keyframes buttonShine {
+      0% {
+        left: -120%;
+      }
+
+      45%,
+      100% {
+        left: 140%;
+      }
+    }
+
+    .cta:hover {
+      transform:
+        translateY(-5px)
+        scale(1.015);
+
+      box-shadow:
+        0 22px 55px rgba(124, 77, 255, 0.45);
+    }
+
+    .cta:active {
+      transform:
+        translateY(-1px)
+        scale(0.98);
+    }
+
+    .download-icon {
+      font-size: 21px;
+
+      animation:
+        downloadBounce 1.5s ease-in-out infinite;
+    }
+
+    @keyframes downloadBounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(3px);
+      }
+    }
+
+
+    /* =====================================================
+       SUBTEXT + FOOTER
+    ===================================================== */
+
+    .subtext {
+      color: #858592;
+
+      font-size: 12px;
+
+      margin-top: 15px;
+
+      animation:
+        fadeUp 1s 1s both;
+    }
+
+    .footer {
+      margin-top: 35px;
+
+      padding-top: 23px;
+
+      border-top:
+        1px solid var(--border);
+
+      color: #858592;
+
+      font-size: 12px;
+
+      line-height: 1.8;
+
+      animation:
+        fadeUp 1s 1.05s both;
+    }
+
+    .brand {
+      color: white;
+
+      font-weight: 800;
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 600px) {
+
+      .page {
+        padding: 18px 12px;
+      }
+
+      .card {
+        padding: 35px 18px;
+
+        border-radius: 26px;
+      }
+
+      .logo-wrapper {
+        margin-bottom: 17px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .intro {
+        font-size: 15px;
+
+        line-height: 1.75;
+      }
+
+      .quote {
+        padding: 23px 16px;
+      }
+
+      .quote strong {
+        font-size: 18px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+
+        gap: 9px;
+      }
+
+      .feature {
+        display: flex;
+
+        align-items: center;
+
+        text-align: left;
+
+        gap: 13px;
+
+        padding: 14px;
+      }
+
+      .feature-icon {
+        margin: 0;
+
+        min-width: 35px;
+
+        text-align: center;
+      }
+
+      .cta {
+        min-height: 58px;
+
+        font-size: 15px;
+      }
+    }
+
+
+    /* =====================================================
+       REDUCE MOTION
+    ===================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =====================================================
+       BACKGROUND
+  ===================================================== -->
+
+  <div class="background">
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+
+  </div>
+
+
+  <!-- =====================================================
+       FLOATING MUSIC NOTES
+  ===================================================== -->
+
+  <div class="music-notes">
+
+    <span class="note">♪</span>
+    <span class="note">♫</span>
+    <span class="note">♬</span>
+    <span class="note">♪</span>
+    <span class="note">♫</span>
+    <span class="note">♩</span>
+    <span class="note">♬</span>
+
+  </div>
+
+
+  <!-- =====================================================
+       PARTICLES
+  ===================================================== -->
+
+  <div class="particles">
+
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+    <span class="particle"></span>
+
+  </div>
+
+
+  <!-- =====================================================
+       MAIN
+  ===================================================== -->
+
+  <main class="page">
+
+
+    <section class="card">
+
+
+      <!-- =================================================
+           LOGO
+      ================================================= -->
+
+      <div class="logo-wrapper">
+
+        <div class="logo-ring"></div>
+
+        <div class="logo">
+          🎵
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           TITLE
+      ================================================= -->
+
+      <div class="eyebrow">
+        A Special Invitation
+      </div>
+
+
+      <h1>
+
+        Welcome to<br />
+
+        <span class="gradient">
+          Trio
+        </span>
+
+      </h1>
+
+
+      <!-- =================================================
+           WELCOME
+      ================================================= -->
+
+      <div
+        class="welcome"
+        id="welcomeMessage"
+      >
+
+        You're invited to experience
+        something different. ✨
+
+      </div>
+
+
+      <!-- =================================================
+           INTRO
+      ================================================= -->
+
+      <p class="intro">
+
+        Kabhi kisi song ki sirf ek line
+        aapke dil ke bahut kareeb hoti hai?
+
+        <br />
+
+        Kabhi mann karta hai ki wahi feeling
+        kisi khaas insaan tak pahunch jaaye?
+
+      </p>
+
+
+      <!-- =================================================
+           QUOTE
+      ================================================= -->
+
+      <div class="quote">
+
+        <strong>
+
+          “Music isn't just something you listen to.
+          Sometimes, it's something you feel.”
+
+        </strong>
+
+        <span>
+
+          Trio — Aapke dil ki awaaz,
+          aapke apno tak.
+
+        </span>
+
+      </div>
+
+
+      <!-- =================================================
+           FEATURES
+      ================================================= -->
+
+      <div class="features">
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            🎶
+          </div>
+
+          <p>
+
+            Apne favourite music ko
+            apne andaaz mein feel karo.
+
+          </p>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            ❤️
+          </div>
+
+          <p>
+
+            Music ke through apne
+            special people se connect karo.
+
+          </p>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            ✨
+          </div>
+
+          <p>
+
+            Apne favourite moments ko
+            music ke saath share karo.
+
+          </p>
+
+        </div>
+
+
+      </div>
+
+
+      <!-- =================================================
+           DOWNLOAD BUTTON
+      ================================================= -->
+
+      <div class="cta-wrapper">
+
+        <div class="cta-glow"></div>
+
+        <a
+          class="cta"
+          id="downloadButton"
+
+          href="https://play.google.com/store/apps/details?id=app.triomusic.in"
+
+          target="_blank"
+
+          rel="noopener noreferrer"
+        >
+
+          <span class="download-icon">
+            ▶
+          </span>
+
+          Download Trio on Play Store
+
+        </a>
+
+      </div>
+
+
+      <!-- =================================================
+           SUBTEXT
+      ================================================= -->
+
+      <div class="subtext">
+
+        Free to download • Made for music lovers ❤️
+
+      </div>
+
+
+      <!-- =================================================
+           FOOTER
+      ================================================= -->
+
+      <footer class="footer">
+
+        <span class="brand">
+          Trio Music
+        </span>
+
+        <br />
+
+        Aapke dil ki awaaz,
+        aapke apno tak.
+
+        <br />
+        <br />
+
+        Made with ❤️ by
+        ORREN Creations Private Limited
+
+      </footer>
+
+
+    </section>
+
+  </main>
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+  ===================================================== -->
+
+  <script>
+
+    /*
+    ========================================================
+    TRIO INVITATION PAGE
+    ========================================================
+    */
+
+
+    /*
+    --------------------------------------------------------
+    USER NAME
+    --------------------------------------------------------
+
+    Actual Google/Chrome account name ko browser se
+    directly read nahi kiya ja sakta.
+
+    Google Sign-In / One Tap integrate karne ke baad:
+
+        showUserName("Gaurav");
+
+    call kar sakte ho.
+    */
+
+    function showUserName(name) {
+
+      const welcome =
+        document.getElementById(
+          "welcomeMessage"
+        );
+
+
+      if (!name || !name.trim()) {
+
+        welcome.textContent =
+          "You're invited to experience something different. ✨";
+
+        return;
+
+      }
+
+
+      welcome.innerHTML =
+        `Welcome, <span class="gradient">${escapeHTML(name)}</span> ❤️`;
+    }
+
+
+    /*
+    --------------------------------------------------------
+    SECURITY
+    --------------------------------------------------------
+    */
+
+    function escapeHTML(value) {
+
+      return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /*
+    --------------------------------------------------------
+    PLAY STORE
+    --------------------------------------------------------
+    */
+
+    const PLAY_STORE_URL =
+      "https://play.google.com/store/apps/details?id=app.triomusic.in";
+
+
+    /*
+    --------------------------------------------------------
+    BUTTON CLICK
+    --------------------------------------------------------
+    */
+
+    document
+      .getElementById("downloadButton")
+      .addEventListener(
+        "click",
+        function () {
+
+          console.log(
+            "Opening Trio Play Store..."
+          );
+
+        }
+      );
+
+
+    /*
+    --------------------------------------------------------
+    TEST NAME
+    --------------------------------------------------------
+
+    Testing ke liye:
+
+        showUserName("Gaurav");
+
+    Production mein Google authentication ke baad
+    actual user name yahan pass hoga.
+
+    */
+
+    // showUserName("Gaurav");
+
+
+  </script>
+
+
+</body>
+</html>
